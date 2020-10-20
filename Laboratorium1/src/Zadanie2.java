@@ -20,9 +20,14 @@ public class Zadanie2 {
         Scanner scan = new Scanner(System.in);
         var numberOfElements = scan.nextInt();
 
+        long startTime = System.nanoTime();
         BigInteger resultNumber = iterFactorial(numberOfElements);
+        long estimatedTime = System.nanoTime() - startTime;
+        double estimatedTimeSec = (double) estimatedTime / 1_000_000_000;
         NumberFormat numFormat = new DecimalFormat();
         numFormat = new DecimalFormat("0.######E0"); //scientific notation format
+        System.out.println("Estimated time [ns]: "+ estimatedTime);
+        System.out.println("Estimated time [s]: "+ estimatedTimeSec);
         System.out.println("Result of factorial (Normal Notation): " + resultNumber);
         System.out.println("Result of factorial (Scientific Notation): " + numFormat.format(resultNumber));
         //Long range [-9 223 372 036 854 775 808, +9 223 372 036 854 775 807].

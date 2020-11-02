@@ -7,11 +7,13 @@ public class Laboratorium2 {
         var selectedNumber = 0;
         var firma = new Firma();
         firma.addWorker(new Pracownik("Hubert", "Kniola", Stanowisko.Trainee, 500));
-        firma.addWorker(new Pracownik("Jordan", "Kondracki", Stanowisko.Trainee, 600));
-        firma.addWorker(new Pracownik("Bartosz", "Kosmala", Stanowisko.Manager, 4000));
+        firma.addWorker(new Pracownik("Peter", "Elixir", Stanowisko.Trainee, 1000));
+        firma.addWorker(new Pracownik("Max", "Python", Stanowisko.CEO, 4000));
+        firma.addWorker(new Pracownik("Martin", "Java", Stanowisko.Manager, 4000));
+        firma.addWorker(new Pracownik("Andrew", "Csharp", Stanowisko.Employee, 3000));
         do
         {
-            System.out.println("0. Exit | 1. Zadanie 1 | 2. Zadanie 1 | 3. Zadanie 3 | 4. Zadanie 4 | 5. Zadanie 5 | 6. Zadanie 6 | 7. Zadanie 7");
+            System.out.println("0. Exit | 1. Zadanie 1 (Osoba) | 2. Zadanie 2 (Pracownik) | 3. Zadanie 3 (Stanowisko) | 4. Zadanie 4 (Firma) | 5. Zadanie 5 (Iter) | 6. Zadanie 6 (Iter) | 7. Zadanie 7 (Srednia)");
             System.out.println("Select task: ");
             Scanner scan = new Scanner(System.in);
             selectedNumber = scan.nextInt();
@@ -24,8 +26,7 @@ public class Laboratorium2 {
                 break;
             case 2:
                 var pracownik = new Pracownik("Hubert", "Kniola", null, 5000);
-                System.out.println("Imie: " + pracownik.getFirstName() + ", nazwisko: " + pracownik.getLastName() + ", stanowisko: "
-                        + pracownik.getStanowisko() + ", pensja: " + pracownik.getSalary());
+                System.out.println(pracownik.toString());
                 break;
             case 3:
                 var pracownik1 = new Pracownik("Hubert", "Kniola", Stanowisko.Manager, 5000);

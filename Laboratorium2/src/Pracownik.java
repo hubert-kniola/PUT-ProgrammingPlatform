@@ -12,7 +12,6 @@ public class Pracownik extends Osoba{
     public Integer getSalary() {
         return salary;
     }
-
     public Stanowisko getStanowisko() {
         return stanowisko;
     }

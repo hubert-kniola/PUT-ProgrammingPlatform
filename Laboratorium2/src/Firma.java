@@ -76,7 +76,7 @@ public class Firma implements Iterable<Pracownik> {
         count.incrementAndGet();
         });
 
-        var result = sum.get() / this.getSize();
+        var result = sum.get() / count.intValue();
         return result;
     }
 }

@@ -11,12 +11,11 @@ public class Osoba {
     public String getFirstName() {
         return firstName;
     }
-
-    public String getLastName() {
-        return lastName;
-    }
     public void setFirstName(String name){
         this.firstName = name;
+    }
+    public String getLastName() {
+        return lastName;
     }
     public void setLastName(String name){
         this.lastName = name;

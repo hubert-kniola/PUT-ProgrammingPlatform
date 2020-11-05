@@ -7,7 +7,7 @@
 
     <persistence-unit name="entity_JPA" transaction-type="RESOURCE_LOCAL">
 
-        <class>pl.poznan.put.cie.coffee.EntityElements</class>
+        <class>pl.poznan.put.cie.coffee.EntityModel.SupplierElements</class>
 
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:h2:~/test"/>

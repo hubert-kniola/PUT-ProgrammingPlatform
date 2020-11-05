@@ -1,12 +1,11 @@
-package pl.poznan.put.cie.coffee;
+package pl.poznan.put.cie.coffee.EntityModel;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.math.BigDecimal;
 
 @Entity(name = "SUPPLIERS")
-public class EntityElements {
+public class SupplierElements {
 
     @Id
     @Column(name = "SUP_ID")
@@ -27,7 +26,7 @@ public class EntityElements {
     @Column(name = "ZIP")
     private String zip;
 
-    public EntityElements(Integer supId, String name, String street,String city,String state,String zip) {
+    public SupplierElements(Integer supId, String name, String street, String city, String state, String zip) {
         this.name = name;
         this.id = supId;
         this.street = street;
@@ -36,9 +35,7 @@ public class EntityElements {
         this.zip = zip;
     }
 
-    public EntityElements() {
-
-    }
+    public SupplierElements() { }
 
     public String getName() {
         return name;
@@ -88,6 +85,12 @@ public class EntityElements {
 
     @Override
     public String toString() {
-        return "Coffee{" + "name=" + name + ", supplierId=" + id + ", street=" + street + ", city=" + city + ", state=" + state + ", zip=" + zip + '}';
+        return "Coffee{" + "name=" + name +
+                ", supplierId=" + id +
+                ", street=" + street +
+                ", city=" + city +
+                ", state=" + state +
+                ", zip=" + zip +
+                '}';
     }
 }

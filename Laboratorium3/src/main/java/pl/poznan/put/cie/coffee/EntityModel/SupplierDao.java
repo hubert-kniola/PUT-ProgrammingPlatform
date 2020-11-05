@@ -1,39 +1,34 @@
-package pl.poznan.put.cie.coffee;
-
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.ResultSetExtractor;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+package pl.poznan.put.cie.coffee.EntityModel;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public class EntityDao {
+public class SupplierDao {
 
     private final EntityManager entityManager;
 
-    public EntityDao() {
+    public SupplierDao() {
         var factory = Persistence.createEntityManagerFactory("entity_JPA");
 
         entityManager = factory.createEntityManager();
     }
 
-    public List<EntityElements> getAllEnt() {
+    public List<SupplierElements> getAllEnt() {
         return entityManager
-                .createQuery("SELECT s FROM SUPPLIERS s", EntityElements.class)
+                .createQuery("SELECT s FROM SUPPLIERS s", SupplierElements.class)
                 .getResultList();
     }
 
 
-    public Optional<EntityElements> getEnt(Integer id) {
+    public Optional<SupplierElements> getEnt(String name) {
         try {
             var ent = entityManager
-                    .createQuery("SELECT ent FROM SUPPLIERS ent WHERE ent.id = :id", EntityElements.class)
-                    .setParameter("id", id)
+                    .createQuery("SELECT ent FROM SUPPLIERS ent WHERE ent.name = :name", SupplierElements.class)
+                    .setParameter("name", name)
                     .getSingleResult();
 
             return Optional.of(ent);
@@ -43,7 +38,14 @@ public class EntityDao {
         }
     }
 
-    public void saveEnt(EntityElements ent) {
+    public void getIdList()
+    {
+        var list = getAllEnt();
+        for(var e : list)
+            System.out.println("supplierName: " + e.getName() + ", supplierId: " + e.getId());
+    }
+
+    public void saveEnt(SupplierElements ent) {
         entityManager.getTransaction().begin();
 
         try {
@@ -56,16 +58,15 @@ public class EntityDao {
         }
     }
 
-    public void deleteEnt(Integer id) {
+    public void deleteEnt(String name) {
         entityManager.getTransaction().begin();
 
         try {
-            getEnt(id).ifPresent(entityManager::remove);
+            getEnt(name).ifPresent(entityManager::remove);
             entityManager.getTransaction().commit();
 
         } catch (Exception e) {
             entityManager.getTransaction().rollback();
         }
     }
-
 }

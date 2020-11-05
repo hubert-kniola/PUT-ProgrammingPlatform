@@ -1,17 +1,14 @@
-package pl.poznan.put.cie.coffee;
+package pl.poznan.put.cie.coffee.CoffeeModel;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.springframework.dao.DataAccessException;
+import java.util.*;
+
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+
+import pl.poznan.put.cie.coffee.DbUtilities;
+import pl.poznan.put.cie.coffee.EntityModel.SupplierElements;
 
 public class CoffeeDao {
 
@@ -60,6 +57,13 @@ public class CoffeeDao {
 		}
 	}
 
+	public void getIdList()
+	{
+		var list = getAll();
+		for(var e : list)
+			System.out.println("coffeeName: " + e.getName() + ", supplierId: " + e.getSupplierId());
+	}
+
 	public void update(Coffee c) {
 		String sql = "UPDATE coffees "
 				  + "SET price = :price, sales = :sales, total = :total "
@@ -75,7 +79,7 @@ public class CoffeeDao {
 
 	public void delete(String name, int supplierId) {
 		String sql = "DELETE FROM coffees "
-				+ "WHERE cof_name = :cof_name + AND sup_id = :sup_id";
+				+ "WHERE cof_name = :cof_name AND sup_id = :sup_id";
 		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("cof_name", name);
 		parameters.put("sup_id", supplierId);

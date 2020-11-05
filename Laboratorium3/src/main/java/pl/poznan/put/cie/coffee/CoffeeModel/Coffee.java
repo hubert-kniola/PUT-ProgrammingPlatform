@@ -1,4 +1,4 @@
-package pl.poznan.put.cie.coffee;
+package pl.poznan.put.cie.coffee.CoffeeModel;
 
 import java.math.BigDecimal;
 
@@ -63,7 +63,13 @@ public class Coffee {
 
 	@Override
 	public String toString() {
-		return "Coffee{" + "name=" + name + ", supplierId=" + supplierId + ", price=" + price + ", sales=" + sales + ", total=" + total + '}';
+		return "Coffee{" +
+				"name=" + name +
+				", supplierId=" + supplierId +
+				", price=" + price +
+				", sales=" + sales +
+				", total=" + total +
+				'}';
 	}
 
 }

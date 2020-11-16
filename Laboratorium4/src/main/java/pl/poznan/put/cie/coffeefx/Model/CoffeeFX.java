@@ -1,4 +1,4 @@
-package pl.poznan.put.cie.coffeefx;
+package pl.poznan.put.cie.coffeefx.Model;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;

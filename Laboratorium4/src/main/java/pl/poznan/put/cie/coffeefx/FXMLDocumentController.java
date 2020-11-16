@@ -3,165 +3,130 @@ package pl.poznan.put.cie.coffeefx;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.chart.XYChart;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.ScatterChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
-import javafx.util.Callback;
 import pl.poznan.put.cie.coffee.CoffeeModel.Coffee;
 import pl.poznan.put.cie.coffee.CoffeeModel.CoffeeDao;
+import pl.poznan.put.cie.coffeefx.Model.CoffeeFX;
 
-import java.net.URL;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public class FXMLDocumentController{
 
-    @FXML
-    private AnchorPane rootPane;
+    private final static String CHART1 = "y = 0";
+    private final static String CHART2 = "y = -x^2";
+    private final static String CHART3 = "y= x^2 - x + 3";
+
+    private final static String SCATTER = "Scatter chart";
+    private final static String LINE = "Line chart";
 
     @FXML
-    private Button button1, button2, button3, button4;
-
-    @FXML
-    private TextArea area1, area2, area3;
-
-    @FXML
-    private Label label;
+    private TextField area1, area2, area3;
 
     @FXML
     private BorderPane mainPane;
 
     @FXML
-    private ComboBox combo;
-
+    private ComboBox<String> combo;
 
     @FXML
-    public void initialize(URL url, ResourceBundle rb)
+    private ScatterChart<Number, Number> scatterChart = Task1.createScatter();
+
+    @FXML
+    private LineChart<Number, Number> lineChart = Task1.createLine();
+
+    private static int chart = 1;
+
+    @FXML
+    public void initialize()
     {
 
     }
 
-
-    private static final Integer MAX_Y = 50;
-    private static final Integer MAX_X = 50;
-
-    private int chart = 1;
-
     @FXML
-    public void Task1(ActionEvent event) throws Exception {
-        var scatter = Task1Controller.createChart();
-        button1 = new Button() {{
-            setText("Change chart");
-            button1.setOnAction(event -> {
-                switch (chart) {
-                    case 1:
-                        scatter.getData().addAll(Task1Controller.createSeries("y = 0", x -> 0D));
-
-                        break;
-
-                    case 2:
-                        scatter.getData().addAll(Task1Controller.createSeries("y = -x^2", x -> -1 * x * x));
-
-                        break;
-
-                    case 3:
-                        scatter.getData().addAll(Task1Controller.createSeries("y= x^2 - x + 3", x -> x * x - x + 3));
-
-                        break;
-
-                    default:
-                        scatter.getData().clear();
-                        chart = 0;
-                }
-
-                chart++;
-            });
-        }};
-        /*button1 = new Button ("Send");
-        combo.setEditable(true);
-
-        combo = new ComboBox();
-        combo.getItems().addAll(
-                "f(x) = 0",
-                "f(x) = -x^2",
-                "f(x) = x^2 - x + 3");
-
-        combo.setCellFactory(
-                new Callback<ListView<String>, ListCell<String>>() {
-                    @Override public ListCell<String> call(ListView<String> param) {
-                        final ListCell<String> cell = new ListCell<String>() {
-                            {
-                                super.setPrefWidth(100);
-                            }
-                            @Override public void updateItem(String item,
-                                                             boolean empty) {
-                                super.updateItem(item, empty);
-                                if (item != null) {
-                                    setText(item);
-                                    if (item.contains("f(x) = 0")) {
-                                        scatter.getData().addAll(Task1Controller.createSeries("y = 0", x -> 0D));
-                                    }
-                                    else if (item.contains("f(x) = -x^2")){
-                                        scatter.getData().addAll(Task1Controller.createSeries("y = -x^2", x -> -1 * x * x));
-                                    }
-                                    else if (item.contains("f(x) = x^2 - x + 3")){
-                                        scatter.getData().addAll(Task1Controller.createSeries("y= x^2 - x + 3", x -> x * x - x + 3));
-                                    }
-                                    else {
-                                        scatter.getData().addAll(Task1Controller.createSeries("y = 0", x -> 0D));
-                                    }
-                                }
-                                else {
-                                    scatter.getData().addAll(Task1Controller.createSeries("y = 0", x -> 0D));
-                                }
-                            }
-                        };
-                        return cell;
-                    }
-                });
-
-        button1.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                if (combo.getValue() != null && combo.getValue().toString() == "f(x) = 0")
-                {
-                    scatter.getData().addAll(Task1Controller.createSeries("y = 0", x -> 0D));
-                } else if (combo.getValue() != null && combo.getValue().toString() == "f(x) = 0"){
-                    scatter.getData().addAll(Task1Controller.createSeries("y= x^2 - x + 3", x -> x * x - x + 3));
-                    }
-                else if (combo.getValue() != null && combo.getValue().toString() == "f(x) = 0"){
-                    scatter.getData().addAll(Task1Controller.createSeries("y= x^2 - x + 3", x -> x * x - x + 3));
-                }
-                else {
-                 scatter.getData().addAll(Task1Controller.createSeries("y = 0", x -> 0D));
-                }
-            }});*/
-
-
-        var root = new VBox(scatter);
+    public void handleChartButton(ActionEvent event) throws Exception {
+        combo.setItems(FXCollections.observableArrayList(CHART1, CHART2, CHART3));
+        lineChart.setVisible(false);
+        scatterChart.setTitle("Scatter Chart");
+        var root = new VBox(scatterChart, lineChart);
         mainPane.setCenter(root);
     }
 
-    @FXML
-    public void Task2()
+    public void handleComboButton(ActionEvent event) {
+        Object selectedItem = combo.getSelectionModel().getSelectedItem();
+        if (CHART1.equals(selectedItem)) {
+            scatterChart.getData().addAll(Task1.createSeries(CHART1, x -> 0D));
+            lineChart.getData().addAll(Task1.createSeries(CHART1, x -> 0D));
+        } else if (CHART2.equals(selectedItem)) {
+            scatterChart.getData().addAll(Task1.createSeries(CHART2, x -> -1 * x * x));
+            lineChart.getData().addAll(Task1.createSeries(CHART2, x -> -1 * x * x));
+        }
+        else if (CHART3.equals(selectedItem)){
+            scatterChart.getData().addAll(Task1.createSeries(CHART3, x -> x * x - x + 3));
+            lineChart.getData().addAll(Task1.createSeries(CHART3, x -> x * x - x + 3));
+        }
+    }
+
+    public void handleChangeButton(ActionEvent event)
     {
-        var scatter = Task1Controller.createChart();
-        button3 = new Button() {{
-            button3.setOnAction(event -> {scatter.getData().addAll(Task1Controller
-                    .createSeries("y = Ax^2 + Bx + C",
-                            x -> (Double.parseDouble(area1.getText()) * x * x)
-                                    + (Double.parseDouble(area2.getText()) * x)
-                                    + Double.parseDouble(area3.getText())));});}};
-        var root = new VBox(scatter);
-        mainPane.setCenter(root);
+        switch (chart) {
+            case 1:
+                lineChart.setVisible(true);
+                scatterChart.setVisible(false);
+                lineChart.setTitle("Line Chart");
+                break;
+
+            case 2:
+                lineChart.setVisible(false);
+                scatterChart.setVisible(true);
+                scatterChart.setTitle("Scatter Chart");
+                break;
+
+            default:
+                scatterChart.getData().clear();
+                lineChart.getData().clear();
+                chart = 0;
+        }
+        chart++;
     }
 
+    public void handleClearButton(ActionEvent event) {
+        scatterChart.getData().clear();
+        scatterChart.setTitle("");
+        lineChart.getData().clear();
+        lineChart.setTitle("");
+    }
 
     @FXML
-    public void Task3(ActionEvent event) throws Exception{
+    public void handleDrawButton(ActionEvent event)
+    {
+        scatterChart.setTitle("Scatter Chart");
+        try {
+            var a = Double.parseDouble(area1.getText());
+            var b = Double.parseDouble(area2.getText());
+            var c = Double.parseDouble(area3.getText());
+
+            scatterChart.getData().addAll(Task1
+                        .createSeries("y = " + a + "x^2 + " + b + "x + " + c, x -> (a * x * x) + (b * x) + c));
+
+            if(mainPane.getCenter().isDisabled() || !mainPane.getCenter().isVisible()) {
+                var root = new VBox(scatterChart);
+                mainPane.setCenter(root);
+            }
+        }
+        catch(NumberFormatException e)
+        {
+            scatterChart.setTitle("Invalid argument!");
+            lineChart.setTitle("Invalid argument!");
+        }
+    }
+
+    @FXML
+    public void handleCoffeeButton(ActionEvent event) throws Exception{
         TableView table = new TableView();
         table.setEditable(true);
 

@@ -85,7 +85,7 @@ public class SupplierElements {
 
     @Override
     public String toString() {
-        return "Coffee{" + "name=" + name +
+        return "Supplier{" + "name=" + name +
                 ", supplierId=" + id +
                 ", street=" + street +
                 ", city=" + city +

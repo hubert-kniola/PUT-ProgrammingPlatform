@@ -54,7 +54,7 @@ public class CoffHousesElements {
 
     @Override
     public String toString() {
-        return "CoffHousesElements{" +
+        return "CoffHouses{" +
                 "id=" + id +
                 ", city='" + city + '\'' +
                 ", coffee=" + coffee +

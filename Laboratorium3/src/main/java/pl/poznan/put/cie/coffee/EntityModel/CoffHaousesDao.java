@@ -60,5 +60,4 @@ public class CoffHaousesDao {
             entityManager.getTransaction().rollback();
         }
     }
-
 }

@@ -243,7 +243,7 @@ public class CoffeeMain {
 		}
 	}
 
-	public static void merch() throws ParseException {
+	public static void merch() {
 		System.out.println("Merch Inventory");
 		while (true) {
 			System.out.println("\n"
@@ -287,10 +287,10 @@ public class CoffeeMain {
 					var quan = Integer.parseInt(in.nextLine());
 					System.out.print("Please enter merch date: ");
 					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+					try {
 					Date parsedDate = dateFormat.parse(in.nextLine());
 					Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
-					try {
-						mDao.saveEnt(new MerchElements(merchId, name, supId, quan, timestamp));
+					mDao.saveEnt(new MerchElements(merchId, name, supId, quan, timestamp));
 					} catch (Exception e) {
 						System.out.println("Couldn't save given merch, reason: " + e.getMessage());
 					}

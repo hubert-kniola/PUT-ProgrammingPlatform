@@ -55,7 +55,7 @@ public class MerchElements {
 
     @Override
     public String toString() {
-        return "MerchElements{" +
+        return "Merch{" +
                 "ID=" + id +
                 ", name='" + name + '\'' +
                 ", supID=" + supId +

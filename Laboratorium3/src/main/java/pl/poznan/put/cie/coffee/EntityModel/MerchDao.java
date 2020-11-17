@@ -60,5 +60,4 @@ public class MerchDao {
             entityManager.getTransaction().rollback();
         }
     }
-
 }

@@ -34,6 +34,9 @@ public class FXMLDocumentController{
     private ComboBox<String> combo;
 
     @FXML
+    private Button button;
+
+    @FXML
     private ScatterChart<Number, Number> scatterChart = Task1.createScatter();
 
     @FXML
@@ -41,19 +44,23 @@ public class FXMLDocumentController{
 
     private static int chart = 1;
 
-    @FXML
-    public void initialize()
-    {
+    private static boolean isClicked = false;
 
-    }
+    @FXML
+    public void initialize() { }
 
     @FXML
     public void handleChartButton(ActionEvent event) throws Exception {
-        combo.setItems(FXCollections.observableArrayList(CHART1, CHART2, CHART3));
-        lineChart.setVisible(false);
-        scatterChart.setTitle("Scatter Chart");
-        var root = new VBox(scatterChart, lineChart);
-        mainPane.setCenter(root);
+        //if(!isClicked)
+        //{
+            button.setVisible(false);
+            combo.setItems(FXCollections.observableArrayList(CHART1, CHART2, CHART3));
+            lineChart.setVisible(false);
+            scatterChart.setTitle("Scatter Chart");
+            var root = new VBox(scatterChart, lineChart);
+            mainPane.setCenter(root);
+            //isClicked = true;
+        //}
     }
 
     public void handleComboButton(ActionEvent event) {
@@ -87,8 +94,8 @@ public class FXMLDocumentController{
                 break;
 
             default:
-                scatterChart.getData().clear();
-                lineChart.getData().clear();
+                //scatterChart.getData().clear();
+                //lineChart.getData().clear();
                 chart = 0;
         }
         chart++;
@@ -96,25 +103,28 @@ public class FXMLDocumentController{
 
     public void handleClearButton(ActionEvent event) {
         scatterChart.getData().clear();
-        scatterChart.setTitle("");
+        scatterChart.setTitle("Scatter Chart");
         lineChart.getData().clear();
-        lineChart.setTitle("");
+        lineChart.setTitle("Line Chart");
     }
 
     @FXML
     public void handleDrawButton(ActionEvent event)
     {
-        scatterChart.setTitle("Scatter Chart");
+        //scatterChart.setTitle("Scatter Chart");
         try {
             var a = Double.parseDouble(area1.getText());
             var b = Double.parseDouble(area2.getText());
             var c = Double.parseDouble(area3.getText());
 
             scatterChart.getData().addAll(Task1
-                        .createSeries("y = " + a + "x^2 + " + b + "x + " + c, x -> (a * x * x) + (b * x) + c));
+                        .createSeries("y = "+a+"x^2 + "+b+"x + "+c, x -> (a*x*x) + (b*x) + c));
+
+            lineChart.getData().addAll(Task1
+                    .createSeries("y = "+a+"x^2 + "+b+"x + "+c, x -> (a*x*x) + (b*x) + c));
 
             if(mainPane.getCenter().isDisabled() || !mainPane.getCenter().isVisible()) {
-                var root = new VBox(scatterChart);
+                var root = new VBox(scatterChart, lineChart);
                 mainPane.setCenter(root);
             }
         }
@@ -129,6 +139,7 @@ public class FXMLDocumentController{
     public void handleCoffeeButton(ActionEvent event) throws Exception{
         TableView table = new TableView();
         table.setEditable(true);
+        button.setVisible(true);
 
         var dao = new CoffeeDao();
         ObservableList<CoffeeFX> data = FXCollections.observableArrayList();

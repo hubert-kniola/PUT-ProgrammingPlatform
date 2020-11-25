@@ -34,7 +34,7 @@ public class FXMLDocumentController{
     private ComboBox<String> combo;
 
     @FXML
-    private Button button;
+    private Button button, button1, button2, button3;
 
     @FXML
     private ScatterChart<Number, Number> scatterChart = Task1.createScatter();
@@ -51,16 +51,21 @@ public class FXMLDocumentController{
 
     @FXML
     public void handleChartButton(ActionEvent event) throws Exception {
-        //if(!isClicked)
-        //{
-            button.setVisible(false);
-            combo.setItems(FXCollections.observableArrayList(CHART1, CHART2, CHART3));
-            lineChart.setVisible(false);
-            scatterChart.setTitle("Scatter Chart");
-            var root = new VBox(scatterChart, lineChart);
-            mainPane.setCenter(root);
-            //isClicked = true;
-        //}
+        combo.setVisible(true);
+        area1.setVisible(true);
+        area2.setVisible(true);
+        area3.setVisible(true);
+        button1.setVisible(true);
+        button2.setVisible(true);
+        button3.setVisible(true);
+        button.setVisible(false);
+        combo.setItems(FXCollections.observableArrayList(CHART1, CHART2, CHART3));
+        lineChart.setVisible(false);
+        scatterChart.getData().clear();
+        lineChart.getData().clear();
+        scatterChart.setTitle("Scatter Chart");
+        var root = new VBox(scatterChart, lineChart);
+        mainPane.setCenter(root);
     }
 
     public void handleComboButton(ActionEvent event) {
@@ -123,6 +128,10 @@ public class FXMLDocumentController{
             lineChart.getData().addAll(Task1
                     .createSeries("y = "+a+"x^2 + "+b+"x + "+c, x -> (a*x*x) + (b*x) + c));
 
+            area1.clear();
+            area2.clear();
+            area3.clear();
+
             if(mainPane.getCenter().isDisabled() || !mainPane.getCenter().isVisible()) {
                 var root = new VBox(scatterChart, lineChart);
                 mainPane.setCenter(root);
@@ -140,6 +149,13 @@ public class FXMLDocumentController{
         TableView table = new TableView();
         table.setEditable(true);
         button.setVisible(true);
+        combo.setVisible(false);
+        area1.setVisible(false);
+        area2.setVisible(false);
+        area3.setVisible(false);
+        button1.setVisible(false);
+        button2.setVisible(false);
+        button3.setVisible(false);
 
         var dao = new CoffeeDao();
         ObservableList<CoffeeFX> data = FXCollections.observableArrayList();

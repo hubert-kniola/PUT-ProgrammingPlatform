@@ -19,12 +19,12 @@
                         <Insets left="35.0" top="30.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="button1" mnemonicParsing="false" onAction="#handleChangeButton" prefHeight="50.0" prefWidth="90.0" text="Scatter/Line">
+                  <Button fx:id="button1" mnemonicParsing="false" onAction="#handleChangeButton" prefHeight="50.0" prefWidth="90.0" text="Scatter/Line" visible="false">
                      <VBox.margin>
                         <Insets left="30.0" top="20.0" />
                      </VBox.margin>
                   </Button>
-                  <ComboBox fx:id="combo" onAction="#handleComboButton" prefWidth="100.0" promptText="3 types">
+                  <ComboBox fx:id="combo" onAction="#handleComboButton" prefWidth="100.0" promptText="3 types" visible="false">
                      <VBox.margin>
                         <Insets left="25.0" top="20.0" />
                      </VBox.margin>
@@ -32,17 +32,17 @@
                         <Insets left="20.0" />
                      </padding>
                   </ComboBox>
-                  <Button fx:id="button2" mnemonicParsing="false" onAction="#handleClearButton" prefHeight="52.0" prefWidth="80.0" text="Clear">
+                  <Button fx:id="button2" mnemonicParsing="false" onAction="#handleClearButton" prefHeight="52.0" prefWidth="80.0" text="Clear" visible="false">
                      <VBox.margin>
                         <Insets left="35.0" top="20.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="button3" mnemonicParsing="false" onAction="#handleDrawButton" prefHeight="51.0" prefWidth="80.0" text="Draw">
+                  <Button fx:id="button3" mnemonicParsing="false" onAction="#handleDrawButton" prefHeight="51.0" prefWidth="80.0" text="Draw" visible="false">
                      <VBox.margin>
                         <Insets left="35.0" top="20.0" />
                      </VBox.margin>
                   </Button>
-                  <TextField fx:id="area1" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="35.0" promptText="A">
+                  <TextField fx:id="area1" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="35.0" promptText="A" visible="false">
                      <VBox.margin>
                         <Insets left="55.0" top="20.0" />
                      </VBox.margin>
@@ -50,7 +50,7 @@
                         <Insets left="12.0" />
                      </padding>
                   </TextField>
-                  <TextField fx:id="area2" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="35.0" promptText="B">
+                  <TextField fx:id="area2" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="35.0" promptText="B" visible="false">
                      <VBox.margin>
                         <Insets left="55.0" top="20.0" />
                      </VBox.margin>
@@ -58,7 +58,7 @@
                         <Insets left="12.0" />
                      </padding>
                   </TextField>
-                  <TextField fx:id="area3" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="34.0" promptText="C">
+                  <TextField fx:id="area3" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="34.0" promptText="C" visible="false">
                      <VBox.margin>
                         <Insets left="55.0" top="20.0" />
                      </VBox.margin>

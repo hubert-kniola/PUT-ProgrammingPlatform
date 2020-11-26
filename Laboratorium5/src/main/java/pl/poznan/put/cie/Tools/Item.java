@@ -65,4 +65,14 @@ public class Item {
 		return doc;
 	}
 
+	@Override
+	public String toString() {
+		return "Item{" +
+				"id=" + id +
+				", price=" + price +
+				", name='" + name + '\'' +
+				", category='" + category + '\'' +
+				", description='" + description + '\'' +
+				'}';
+	}
 }

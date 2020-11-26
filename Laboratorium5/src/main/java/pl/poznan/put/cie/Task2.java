@@ -32,7 +32,19 @@ public class Task2 {
 
         for (var h : result.scoreDocs) {
             var document = searcher.doc(h.doc);
-            System.out.println(Item.fromDocument(document));
+            System.out.println(Item.fromDocument(document).toString());
+        }
+    }
+
+    public void showResultForRange(Query query, int hitsPerPage) throws IOException {
+        var res = searcher.search(query, 5);
+
+        System.out.printf("\nFound %d for '%s', showing %d.\n", res.totalHits.value, query, hitsPerPage);
+
+        for (var h : res.scoreDocs)
+        {
+            var document = searcher.doc(h.doc);
+            System.out.println(Item.fromDocument(document).toString());
         }
     }
 

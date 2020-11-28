@@ -20,14 +20,14 @@ public class Task2 {
         var context = new Task1();
         context.indexItems();
 
-        var reader = DirectoryReader.open(context.getDirectory());
+        var reader = DirectoryReader.open(context.getDirectory()); //open reader
 
         analyzer = context.getAnalyzer();
-        searcher = new IndexSearcher(reader);
+        searcher = new IndexSearcher(reader); //searcher
     }
 
     public void showResultsForQuery(String query, int hitsPerPage) throws IOException {
-        var result = executeQuery(query, hitsPerPage);
+        var result = executeQuery(query, hitsPerPage); //result
         System.out.printf("\nFound %d for '%s', showing %d.\n", result.totalHits.value, query, hitsPerPage);
 
         for (var h : result.scoreDocs) {
@@ -37,7 +37,7 @@ public class Task2 {
     }
 
     public void showResultForRange(Query query, int hitsPerPage) throws IOException {
-        var res = searcher.search(query, 5);
+        var res = searcher.search(query, hitsPerPage);
 
         System.out.printf("\nFound %d for '%s', showing %d.\n", res.totalHits.value, query, hitsPerPage);
 

@@ -35,13 +35,8 @@ public class Item {
 
 		var id = document.get("id");
 		var price = document.get("price");
-
-		if (id != null) {
-			item.id = Integer.parseInt(id);
-		}
-		if (price != null) {
-			item.price = Float.parseFloat(price);
-		}
+		if (id != null) { item.id = Integer.parseInt(id); }
+		if (price != null) { item.price = Float.parseFloat(price); }
 
 		item.name = document.get("name");
 		item.category = document.get("category");
@@ -55,6 +50,7 @@ public class Item {
 
 		doc.add(new StringField("id", Integer.toString(getId()), Field.Store.YES));
 		doc.add(new TextField("name", getName(), Field.Store.YES));
+		doc.add(new TextField("price", Float.toString(getPrice()), Field.Store.YES));
 		doc.add(new FloatPoint("price", getPrice()));
 
 		var category = getCategory();

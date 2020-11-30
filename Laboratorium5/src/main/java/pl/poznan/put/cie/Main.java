@@ -12,7 +12,7 @@ public class Main {
         var t2 = new Task2();
         System.out.print("Enter how many items are to be displayed: ");
         Scanner scan = new Scanner(System.in);
-        int hitsPerPage = scan.nextInt(); //(Lustrzanka NOT Sony)
+        int hitsPerPage = scan.nextInt();
 
         String[] queries = {
                 "name:(Filtr NOT polaryzacyjny)",
@@ -21,9 +21,16 @@ public class Main {
                 "name:pokrowce~2",
         };
 
+        String[] queries1 = {
+                "name:(Lustrzanka NOT Sony)",
+                "name:Lustrzanka AND Sony description: Nieprzeciętna",
+                "category:Obi*",
+                "name:Czyszczące~2",
+        };
+
         Query q = FloatPoint.newRangeQuery("price", 100.0f, 300.0f);
 
-        for (var el : queries) { t2.showResultsForQuery(el, hitsPerPage); }
+        for (var el : queries1) { t2.showResultsForQuery(el, hitsPerPage); }
         t2.showResultForRange(q, hitsPerPage);
     }
 }

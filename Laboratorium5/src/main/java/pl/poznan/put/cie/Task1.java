@@ -20,7 +20,7 @@ public class Task1 {
 
     public void indexItems() throws IOException {
         analyzer = new StandardAnalyzer();
-        directory = new MMapDirectory(getResourceFilePath("lucene"));
+        directory = new MMapDirectory(getResourceFilePath("IndexedItems"));
 
         if (directory.listAll().length > 1) return;
         System.out.println("Document indexing...");

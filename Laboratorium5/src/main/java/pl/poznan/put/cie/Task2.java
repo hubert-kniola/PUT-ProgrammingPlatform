@@ -4,9 +4,7 @@ import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.queryparser.classic.QueryParser;
-import org.apache.lucene.search.IndexSearcher;
-import org.apache.lucene.search.Query;
-import org.apache.lucene.search.TopDocs;
+import org.apache.lucene.search.*;
 import pl.poznan.put.cie.Tools.Item;
 
 import java.io.IOException;
@@ -35,8 +33,12 @@ public class Task2 {
     }
 
     public void showResultForRange(Query query, int hitsPerPage) throws IOException {
-        var res = searcher.search(query, hitsPerPage);
+
+        SortField field = new SortField("price", SortField.Type.FLOAT);
+        Sort sort = new Sort(field);
+        var res = searcher.search(query, hitsPerPage, sort);
         System.out.printf("\nFound %d for '%s', showing %d.\n", res.totalHits.value, query, hitsPerPage);
+
 
         for (var h : res.scoreDocs)
         {

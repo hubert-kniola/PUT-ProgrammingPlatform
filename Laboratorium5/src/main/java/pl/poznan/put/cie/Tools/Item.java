@@ -1,6 +1,10 @@
 package pl.poznan.put.cie.Tools;
 
 import org.apache.lucene.document.*;
+import org.apache.lucene.index.IndexableField;
+import org.apache.lucene.search.Sort;
+import org.apache.lucene.search.SortField;
+import org.apache.lucene.search.SortedNumericSortField;
 
 public class Item {
 
@@ -52,6 +56,12 @@ public class Item {
 		doc.add(new TextField("name", getName(), Field.Store.YES));
 		doc.add(new TextField("price", Float.toString(getPrice()), Field.Store.YES));
 		doc.add(new FloatPoint("price", getPrice()));
+
+		doc.add(new NumericDocValuesField("price", (long) getPrice()));
+		//doc.add(new SortField("price", Float.toString(getPrice()), Field.Store.NO, Field.Index.NOT_ANALYZED));
+		//SortField priceSort =  new SortedNumericSortField("price", SortField.Type.FLOAT, true);
+		//Sort sort = new Sort(priceSort);
+		//doc.add((IndexableField)priceSort);
 
 		var category = getCategory();
 

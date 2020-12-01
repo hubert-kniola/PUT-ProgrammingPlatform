@@ -1,6 +1,8 @@
 import functools
 import re
 import pathlib
+import string
+from collections import Counter, defaultdict
 
 x = [1, 2, 3, 4]
 
@@ -22,92 +24,93 @@ def isPalindrome(s):
     return s == s[::-1]
 
 
-def filterFoo(letter):
-    elements = range(1, 10)
-
-    if letter in elements:
-        return True
-    else:
-        return False
-
-
 def palindrome(text):
-    x = next(filter(text.isalpha(), text))
-    yon = isPalindrome(x.lower())
-    if yon:
+    word = list(filter(lambda c: c in string.ascii_letters, text))
+    word = "".join(word)
+    if isPalindrome(word.lower()):
         print("Yes")
     else:
         print("No")
 
 
 def tokenize(text):
-    return [re.findall(r"[\w']+", text)]
+    return re.findall(r"[\w']+", text)
 
 
 def tokenize2(text):
-    return re.split('\W+', text)
+    return re.split(r'\W+', text)
 
 
-# def remove_stop_words(text):
-#    with open('C:\\Users\\hubkn\\AppData\\Local\\Temp\\PPLab6.py', encoding='UTF-8') as inputFile:
-#        stopWords = tokenize(inputFile.read())
-#            for x in range(len(text)):
-#                if(text[x] == stopWords)
+def remove_stop_words(text):
+    with open(r'./pl.stopwords.txt', 'r',
+              encoding='UTF-8') as input_file:
+        stopWords = tokenize(input_file.read())
+        return list(filter(lambda word: word not in stopWords and len(word) > 2, tokenize(text)))
 
-def isAnagram(str1, str2):
+
+def read_file(file_name):
+    with open(rf'./{file_name}', 'r',
+              encoding='UTF-8') as inputFile:
+        text = inputFile.read()
+        return text
+
+
+def count_most_frequent(text, n):
+    new_text = remove_stop_words(text)
+    counter_list = Counter(new_text)
+    sorted_list = list(sorted(counter_list.items(), key=lambda item: item[1]))
+    return sorted_list[-n:]
+
+
+def is_anagram(str1, str2):
     str1_list = list(str1)
     str1_list.sort()
     str2_list = list(str2)
     str2_list.sort()
 
-    return (str1_list == str2_list)
+    return str1_list == str2_list
 
-def readFile(fileName):
-    with open('C:\\Users\\hubkn\\AppData\\Local\\Temp\\PPLab6\\' + fileName + '.txt', encoding='UTF-8') as inputFile:
-        text = inputFile.read()
-        return text
 
-def checkAnagram(text):
-    tokenText = tokenize(text)
-    l = list()
-    for x in range(len(tokenText)):
-        for y in range(len(tokenText)):
-            if isAnagram(tokenText[x], tokenText[y]):
-                l.append(tokenText[x])
+def check_anagram(text):
+    token_text = tokenize(text)
+    token_text = list(filter(lambda word: len(word) > 10, token_text))
+    d = defaultdict(list)
+    duplicates = []
+    for x in token_text:
+        for y in token_text:
+            if x == y or x in duplicates: continue
+            if is_anagram(x, y):
+                d[x].append(y)
+                duplicates.append(y)
 
-    return l
-
-def showAnagram(l, number):
-    sortedList = list(sorted(l, key=len))
-    for x in reversed(sortedList):
-        print(sortedList[x])
+    return d
 
 
 if __name__ == '__main__':
     # Task 1
-    # increment(x)
-    # print(x)
-    # increment2(x)
-    # print(x)
+    increment2(x)
+    print(x)
 
     # Task 2
     # y = product(x)
     # print(y)
 
     # Task 3
-     palindrome('Tolo ma samolot')
+    # palindrome('Tolo ma samolot')
 
     # Task 4
     # tokenList = tokenize1("To be, or not to be - that is the question [...]")
     # print(tokenList)
 
     # Task 5
+    # rlist = remove_stop_words(readFile("trurl.txt"))
+    # print(rlist)
 
     # Task 6
+    # count = count_most_frequent(readFile("trurl.txt"), 20)
+    # print(count)
 
     # Task 7
-    #text = readFile('unixdict')
-    #sortedList = checkAnagram(text)
-    #showAnagram(sortedList, 10)
-
-
+    # sortedList = checkAnagram(readFile("unixdict.txt"))
+    # print(sortedList)
+    # showAnagram(sortedList, 10)

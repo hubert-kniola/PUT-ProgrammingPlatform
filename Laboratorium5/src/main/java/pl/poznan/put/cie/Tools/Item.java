@@ -44,7 +44,7 @@ public class Item {
 
 		item.name = document.get("name");
 		item.category = document.get("category");
-		item.description = document.get("description");
+		//item.description = document.get("description");
 
 		return item;
 	}
@@ -64,9 +64,8 @@ public class Item {
 		//doc.add((IndexableField)priceSort);
 
 		var category = getCategory();
-
 		doc.add(new TextField("category", category == null ? "" : category, Field.Store.YES));
-		doc.add(new TextField("description", getDescription(), Field.Store.NO));
+		doc.add(new TextField("description", getDescription(), Field.Store.YES));
 
 		return doc;
 	}

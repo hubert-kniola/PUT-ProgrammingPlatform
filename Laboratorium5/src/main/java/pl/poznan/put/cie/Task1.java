@@ -20,14 +20,14 @@ public class Task1 {
 
     public void indexItems() throws IOException {
         analyzer = new StandardAnalyzer();
-        directory = new MMapDirectory(getResourceFilePath("IndexedItems"));
+        directory = new MMapDirectory(getFilePath("IndexedItems"));
 
         if (directory.listAll().length > 1) return;
         System.out.println("Document indexing...");
 
         var config = new IndexWriterConfig(analyzer);
         try (IndexWriter writer = new IndexWriter(directory, config)) {
-            try (ItemProvider provider = new ItemProvider(getResourceFilePath("items.xml"))) {
+            try (ItemProvider provider = new ItemProvider(getFilePath("items.xml"))) {
                 while (provider.hasNext()) {
                     Item item = provider.next();
                     writer.addDocument(item.toDocument());
@@ -38,7 +38,7 @@ public class Task1 {
         }
     }
 
-    public static Path getResourceFilePath(String fileName) { return Paths.get("src", "main", "resources", fileName); }
+    public static Path getFilePath(String fileName) { return Paths.get("src", "main", "resources", fileName); }
 
     public Directory getDirectory() { return directory; }
 

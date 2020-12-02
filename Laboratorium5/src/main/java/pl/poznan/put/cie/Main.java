@@ -16,7 +16,7 @@ public class Main {
 
         String[] queries = {
                 "name:(Filtr NOT polaryzacyjny)",
-                "name:Lustrzanka description:(autofokus NP-FH50 lekka)",
+                "name:Obiektyw Falcon description:(800mm Mirror Canon)",
                 "category:Filtry*",
                 "name:pokrowce~2",
         };
@@ -30,7 +30,7 @@ public class Main {
 
         Query q = FloatPoint.newRangeQuery("price", 100.0f, 300.0f);
 
-        for (var el : queries1) { t2.showResultsForQuery(el, hitsPerPage); }
+        for (var el : queries) { t2.showResultsForQuery(el, hitsPerPage); }
         t2.showResultForRange(q, hitsPerPage);
     }
 }

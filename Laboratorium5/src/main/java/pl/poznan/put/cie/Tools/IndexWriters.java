@@ -8,15 +8,17 @@ import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.Directory;
+import org.apache.lucene.store.MMapDirectory;
 import org.apache.lucene.store.RAMDirectory;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 
 public class IndexWriters {
 
     public static void writeIndex() throws IOException {
         StandardAnalyzer analyzer = new StandardAnalyzer();
-        Directory index = new RAMDirectory();
+        Directory index = new MMapDirectory(Paths.get("src", "main", "resources", "items.xml"));;
         IndexWriterConfig config = new IndexWriterConfig(analyzer);
         IndexWriter w = new IndexWriter(index, config);
         addDoc(w, "Lucene in Action", "193398817");

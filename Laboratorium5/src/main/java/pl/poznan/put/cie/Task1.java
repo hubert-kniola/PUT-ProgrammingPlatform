@@ -19,15 +19,15 @@ public class Task1 {
     private Directory directory;
 
     public void indexItems() throws IOException {
-        analyzer = new StandardAnalyzer();
-        directory = new MMapDirectory(getFilePath("IndexedItems"));
+        analyzer = new StandardAnalyzer(); //analyzer
+        directory = new MMapDirectory(getFilePath("IndexedItems")); //making directory
 
         if (directory.listAll().length > 1) return;
         System.out.println("Document indexing...");
 
         var config = new IndexWriterConfig(analyzer);
         try (IndexWriter writer = new IndexWriter(directory, config)) {
-            try (ItemProvider provider = new ItemProvider(getFilePath("items.xml"))) {
+            try (ItemProvider provider = new ItemProvider(getFilePath("items.xml"))) { //loading data
                 while (provider.hasNext()) {
                     Item item = provider.next();
                     writer.addDocument(item.toDocument());

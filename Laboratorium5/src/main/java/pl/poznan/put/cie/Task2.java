@@ -37,7 +37,7 @@ public class Task2 {
         SortField field = new SortField("price", SortField.Type.FLOAT);
         Sort sort = new Sort(field);
 
-        var res = searcher.search(query, hitsPerPage, sort);
+        var res = searcher.search(query, hitsPerPage, sort); //sorted result
         System.out.printf("\nFound %d for '%s', showing %d.\n", res.totalHits.value, query, hitsPerPage);
 
         for (var h : res.scoreDocs)

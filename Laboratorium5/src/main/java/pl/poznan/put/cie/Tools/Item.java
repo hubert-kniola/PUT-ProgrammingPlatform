@@ -65,7 +65,9 @@ public class Item {
 
 		var category = getCategory();
 		doc.add(new TextField("category", category == null ? "" : category, Field.Store.YES));
-		doc.add(new TextField("description", getDescription(), Field.Store.YES));
+		doc.add(new TextField("description", getDescription(), Field.Store.NO)); //zostanie wyswietlone "null"
+		// Element jest indexowany lecz nie storowany by ułatwić odczytywanie danych w konsoli
+
 
 		return doc;
 	}

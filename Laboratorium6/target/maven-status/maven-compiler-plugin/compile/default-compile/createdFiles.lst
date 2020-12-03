@@ -1,0 +1,17 @@
+pl\poznan\put\gol\gui\Controller$1.class
+pl\poznan\put\gol\gui\PresetHandler.class
+pl\poznan\put\gol\game\Generation.class
+pl\poznan\put\gol\game\Rules.class
+pl\poznan\put\gol\gui\FileHandler.class
+pl\poznan\put\gol\gui\Controller$2.class
+pl\poznan\put\gol\gui\GameOfLife.class
+pl\poznan\put\gol\game\Cell.class
+pl\poznan\put\gol\game\Cells.class
+pl\poznan\put\gol\game\ConwaysCell.class
+pl\poznan\put\gol\gui\Controller$3.class
+pl\poznan\put\gol\game\DisplayDriver.class
+pl\poznan\put\gol\gui\Controller.class
+pl\poznan\put\gol\gui\PresetHandler$1.class
+pl\poznan\put\gol\gui\JavaFXDisplayDriver.class
+pl\poznan\put\gol\game\ConwaysRules.class
+pl\poznan\put\gol\gui\PresetHandler$2.class

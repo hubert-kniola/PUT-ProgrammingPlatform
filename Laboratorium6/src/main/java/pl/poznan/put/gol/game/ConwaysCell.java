@@ -12,14 +12,18 @@ public class ConwaysCell implements Cell {
 
 	@Override
 	public Cells neighbors() { //implemented
-		return new Cells(new ConwaysCell(i - 1, j - 1),
-				new ConwaysCell(i, j - 1),
-				new ConwaysCell(i + 1, j - 1),
-				new ConwaysCell(i - 1, j),
-				new ConwaysCell(i + 1, j),
-				new ConwaysCell(i - 1, j + 1),
-				new ConwaysCell(i, j + 1),
-				new ConwaysCell(i + 1, j + 1));
+		var cells = new Cells();
+
+		cells.add(new ConwaysCell(i - 1, j - 1));
+		cells.add(new ConwaysCell(i, j - 1));
+		cells.add(new ConwaysCell(i + 1, j - 1));
+		cells.add(new ConwaysCell(i - 1, j));
+		cells.add(new ConwaysCell(i + 1, j));
+		cells.add(new ConwaysCell(i - 1, j + 1));
+		cells.add(new ConwaysCell(i, j + 1));
+		cells.add(new ConwaysCell(i + 1, j + 1));
+
+		return cells;
 	}
 
 	@Override
@@ -29,7 +33,10 @@ public class ConwaysCell implements Cell {
 
 		ConwaysCell that = (ConwaysCell) o;
 
-		return i == that.i && j == that.j;
+		if(i == that.i && j == that.j)
+			return true;
+		else
+			return false;
 	}
 
 	@Override

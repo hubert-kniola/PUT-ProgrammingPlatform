@@ -17,19 +17,20 @@ public class Generation {
 	}
 
 	public void evolve() {
-		var list = aliveCells.getCells()
-				.stream()
-				.flatMap(cell -> cell.neighbors().getCells().stream())
-				.filter(this::isAlive)
-				.collect(Collectors.toList());
-
-		this.aliveCells = new Cells(list);
+		Cells nextGen = new Cells();
+		for(Cell c : aliveCells){
+			if(rules.inNextGeneration(isAlive(c), countAliveNeighbors(c)))
+				nextGen.add(c);
+		}
+		for(Cell c : aliveCells.getNeighbors()){
+			if(!aliveCells.contains(c) && rules.inNextGeneration(false, countAliveNeighbors(c)))
+				nextGen.add(c);
+		}
+		aliveCells = nextGen;
 	}
 
 	public boolean isAlive(Cell cell) { //implemented
-		var aliveNeighborsAmount = countAliveNeighbors(cell);
-
-		return aliveCells.contains(cell) ? rules.inNextGeneration(true, aliveNeighborsAmount) : rules.inNextGeneration(false, aliveNeighborsAmount);
+		return aliveCells.contains(cell);
 	}
 
 	public int countAliveNeighbors(Cell cell) { //implemented
@@ -61,5 +62,13 @@ public class Generation {
 		}
 		Generation other = (Generation) obj;
 		return aliveCells.equals(other.aliveCells);
+	}
+
+	@Override
+	public String toString() {
+		return "Generation{" +
+				"rules=" + rules +
+				", aliveCells=" + aliveCells +
+				'}';
 	}
 }

@@ -22,12 +22,13 @@ public class Cells implements Iterable<Cell> {
 	}
 
 	public Cells getNeighbors() { //implemented
-		var list = cells.stream()
-				.flatMap(cell -> cell.neighbors().getCells().stream())
-				.filter(cell -> !cells.contains(cell))
-				.collect(Collectors.toList());
-
-		return new Cells(list);
+			var list = new Cells();
+			for(Cell e : cells){
+				for(Cell c : e.neighbors()){
+						list.add(c);
+			    }
+			}
+			return list;
 	}
 
 	public boolean isEmpty() {

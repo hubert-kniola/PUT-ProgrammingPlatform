@@ -2,33 +2,34 @@ package pl.poznan.put.gol.game;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Cells implements Iterable<Cell> {
 
-	protected List<Cell> cells;
+	protected HashSet<Cell> cells;
 
 	public Cells(Cell... cells) {
-		this.cells = Arrays.asList(cells);
+		this.cells = new HashSet<>(Arrays.asList(cells));
 	}
 
-	public Cells(List<Cell> cells){this.cells = cells;}
+	public Cells(HashSet<Cell> cells){this.cells = cells;}
 
 	public Cells() {
-		this.cells = new ArrayList<>();
+		this.cells = new HashSet<>();
 	}
 
-	public List<Cell> getCells() {
+	public HashSet<Cell> getCells() {
 		return cells;
 	}
 
 	public Cells getNeighbors() { //implemented
-			var list = new Cells();
+			var set = new HashSet<Cell>();
 			for(Cell e : cells){
 				for(Cell c : e.neighbors()){
-						list.add(c);
+						set.add(c);
 			    }
 			}
-			return list;
+			return new Cells(set);
 	}
 
 	public boolean isEmpty() {

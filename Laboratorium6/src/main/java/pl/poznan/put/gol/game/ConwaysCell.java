@@ -1,5 +1,7 @@
 package pl.poznan.put.gol.game;
 
+import java.util.Objects;
+
 public class ConwaysCell implements Cell {
 
 	protected int i;
@@ -24,6 +26,11 @@ public class ConwaysCell implements Cell {
 		cells.add(new ConwaysCell(i + 1, j + 1));
 
 		return cells;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(i, j);
 	}
 
 	@Override

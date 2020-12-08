@@ -16,7 +16,7 @@ public class Generation {
 		this.aliveCells = aliveCells;
 	}
 
-	public void evolve() {
+	public void evolve() { //implemented
 		Cells nextGen = new Cells();
 		for(Cell c : aliveCells){
 			if(rules.inNextGeneration(isAlive(c), countAliveNeighbors(c)))
@@ -34,11 +34,12 @@ public class Generation {
 	}
 
 	public int countAliveNeighbors(Cell cell) { //implemented
-		return (int) cell.neighbors().getCells()
-				.stream()
-				.distinct()
-				.filter(aliveCells::contains)
-				.count();
+		int count = 0;
+		for (Cell e : cell.neighbors()){
+			if(isAlive(e))
+				count++;
+		}
+		return count;
 	}
 
 	public boolean extinct() {

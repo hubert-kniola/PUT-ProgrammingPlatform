@@ -1,12 +1,12 @@
 from sqlalchemy import create_engine
 from database import *
 
-#Zadanie 1
+# Zadanie 1
 
 engine = create_engine('sqlite:///users.db')
 create_db(engine, drop=True)
 
-#Zadanie 2/3
+# Zadanie 2/3
 
 session = session_creator(engine)
 
@@ -38,23 +38,28 @@ print(f"{person1=}")
 print(f"{person2=}")
 print(f"{person3=}")
 print(f"{person4=}")
-
+print(' ')
 
 print(f"{person1.connections=}")
 print(f"{person3.connections=}")
+print(' ')
 
-#Zadanie 4
+# Zadanie 4
 
 person5 = Person.add_new('Ralph', 'Nazar')
 phone5 = PhoneNumber.add_new(person5, '123456789')
 address5 = Address.add_new(person5, 'Washington', 'Freedom', '45a', '55-555')
 email5 = Email.add_new(person5, 'thojam222@mail.com')
 people = Person.find_where(names=['Ralph'])
+people1 = Person.find_where(names=['333222111'])
 
 print(people)
+print(' ')
 
-phone = PhoneNumber.find(1)
-mail = Email.find(1)
-address = Address.find(1)
+person = Person.find(3)
+phone = PhoneNumber.find(3)
+mail = Email.find(3)
+address = Address.find(3)
 
+print(person)
 print(phone, mail, address)

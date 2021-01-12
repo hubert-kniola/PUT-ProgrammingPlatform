@@ -10,9 +10,10 @@ from sklearn.metrics import mean_squared_error, mean_absolute_error
 
 
 def download_data() -> pd.DataFrame:
-    dataset = load_boston()
-    df1 = pd.DataFrame(dataset['data'], columns=dataset['feature_names'])
-    df2 = pd.DataFrame(dataset['target'], columns=['MEDV'])
+    boston_dataset = load_boston()
+    print(boston_dataset.keys)
+    df1 = pd.DataFrame(boston_dataset['data'], columns=boston_dataset['feature_names'])
+    df2 = pd.DataFrame(boston_dataset['target'], columns=['MEDV'])
 
     return pd.concat([df1, df2], axis=1, sort=False)
 
@@ -22,9 +23,10 @@ def price_regression(dataset: pd.DataFrame) -> (pd.DataFrame, pd.Series):
 
 
 if __name__ == '__main__':
-    data_frame = download_data()
+
 
     # Task 1
+    data_frame = download_data()
     print(f"First 10:\n{data_frame.head(10)}")
     print(f"Last 10:\n{data_frame.tail(10)}")
     print(' ')
@@ -33,11 +35,17 @@ if __name__ == '__main__':
     print("Dataframe information:")
     data_frame.info(verbose=True)
     print(' ')
+    # A. Po 7 próbek
+    # B. Dane są typu float64
+    # C. Nie ma brakujących wartości
 
     # Task 3
     print("Dataframe description:")
     print(data_frame.describe())
     print(' ')
+    # A. Średni wspołczynnik wynosi 3.613524, a odchylenie standardowe 8.60
+    # B. Minimalna cena wynosi 5, a maksymalna 50
+    # C. Mediana wynosi 11.36
 
     # Task 4
     sns.set_color_codes()
@@ -49,6 +57,10 @@ if __name__ == '__main__':
     sns.heatmap(data_frame.corr(), annot=True, fmt='.2f', annot_kws={"fontsize": 8})
     plt.savefig("./heatmap.png")
     plt.clf()
+    # A. Silną korelację mają: RM, ZN, CHAS, DIS, B
+    # B. Niepowiązany z ceną jest atrybut LSTAT
+    # C. Tak istnieją, TAX - RAD
+
 
     sns.regplot(x=data_frame['MEDV'], y=data_frame['RM'])
     plt.savefig("./a_point_plot.png")
@@ -61,6 +73,8 @@ if __name__ == '__main__':
     sns.regplot(x=data_frame['MEDV'], y=data_frame['LSTAT'])
     plt.savefig("./c_point_plot.png")
     plt.clf()
+
+    # D. Dodatnio skorelowane z cenami (a_point_plot)
 
     # Task 6
     x, y = price_regression(data_frame)
@@ -83,5 +97,6 @@ if __name__ == '__main__':
     plt.clf()
 
     # Task 8
-    print(f"a) Test:\tMSE = {mean_squared_error(y_test, y_predicted_test)} MAE = {mean_absolute_error(y_test, y_predicted_test)}")
-    print(f"b) Train:\tMSE = {mean_squared_error(y_train, y_predicted_train)} MAE = {mean_absolute_error(y_train, y_predicted_train)}")
+    print(f"b) Train:\tRMSE = {mean_squared_error(y_train, y_predicted_train)} MAE = {mean_absolute_error(y_train, y_predicted_train)}")
+    print(f"a) Test:\tRMSE = {mean_squared_error(y_test, y_predicted_test)} MAE = {mean_absolute_error(y_test, y_predicted_test)}")
+

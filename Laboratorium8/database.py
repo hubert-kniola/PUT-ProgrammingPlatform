@@ -9,6 +9,7 @@ _session_maker = None
 _Session = None
 
 
+# Zadanie 2
 class PhoneNumber(_Base):
     __tablename__ = 'phone_numbers'
 
@@ -31,6 +32,7 @@ class PhoneNumber(_Base):
         return f"<PhoneNumber(id={self.id}, number={self.number}, person_id={self.person_id})>"
 
 
+# Zadanie 2
 class Address(_Base):
     __tablename__ = 'addresses'
 
@@ -57,6 +59,7 @@ class Address(_Base):
                f"postal_code={self.postal_code}, person_id={self.person_id})>"
 
 
+# Zadanie 2
 class Email(_Base):
     __tablename__ = 'emails'
 
@@ -79,12 +82,14 @@ class Email(_Base):
         return f"<Email(id={self.id}, email={self.email}, person_id={self.person_id})>"
 
 
+# Zadanie 2
 table_of_connection = Table('person_connections', _Base.metadata,
                             Column('first_personid', ForeignKey('people.id'), primary_key=True),
                             Column('second_personid', ForeignKey('people.id'), primary_key=True),
                             CheckConstraint('first_personid != second_personid'))
 
 
+# Zadanie 2
 class Person(_Base):
     __tablename__ = 'people'
 
@@ -103,6 +108,7 @@ class Person(_Base):
     def find(id):
         return _Session.query(Person).filter(Person.id == id).first()
 
+    # Zadanie 3
     @staticmethod
     def add_new(name, full_name):
         obj = Person(name=name, full_name=full_name)
@@ -115,8 +121,9 @@ class Person(_Base):
         other.connections.append(self)
         _Session.commit()
 
+    # Zadanie 4
     @staticmethod
-    def find_where(names=None, full_names=None):
+    def find_where(names=None, full_names=None, phone_numbers=None):
         base = _Session.query(Person)
 
         if names:

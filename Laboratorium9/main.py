@@ -97,6 +97,6 @@ if __name__ == '__main__':
     plt.clf()
 
     # Task 8
-    print(f"b) Train:\tRMSE = {mean_squared_error(y_train, y_predicted_train)} MAE = {mean_absolute_error(y_train, y_predicted_train)}")
-    print(f"a) Test:\tRMSE = {mean_squared_error(y_test, y_predicted_test)} MAE = {mean_absolute_error(y_test, y_predicted_test)}")
+    print(f"A. Train:\tRMSE = {mean_squared_error(y_train, y_predicted_train)} MAE = {mean_absolute_error(y_train, y_predicted_train)}")
+    print(f"B. Test:\tRMSE = {mean_squared_error(y_test, y_predicted_test)} MAE = {mean_absolute_error(y_test, y_predicted_test)}")
 

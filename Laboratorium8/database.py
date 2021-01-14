@@ -123,7 +123,7 @@ class Person(_Base):
 
     # Zadanie 4
     @staticmethod
-    def find_where(names=None, full_names=None, phone_numbers=None):
+    def find_where(names=None, full_names=None):
         base = _Session.query(Person)
 
         if names:

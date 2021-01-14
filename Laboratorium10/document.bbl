@@ -1,0 +1,17 @@
+\begin{thebibliography}{1}
+
+\bibitem{firstbib}
+Hubert Knioła.
+\newblock {Tytuł artykułu}.
+\newblock {\em Kirkman}, 322(10):891--921, 1905.
+
+\bibitem{secondbib}
+Hubert Knioła.
+\newblock {\em Tytuł książki}.
+\newblock Kirkman, Reading, Poznań, 1993.
+
+\bibitem{thirdbib}
+Hubert Knioła.
+\newblock Tytuł.
+
+\end{thebibliography}

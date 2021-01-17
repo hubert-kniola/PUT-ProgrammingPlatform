@@ -8,25 +8,19 @@ from sklearn.linear_model import LinearRegression
 from sklearn.datasets import load_boston
 from sklearn.metrics import mean_squared_error, mean_absolute_error
 
+def price_regression(dataset: pd.DataFrame) -> (pd.DataFrame, pd.Series):
+    return dataset[["RM", "ZN", "CHAS", "DIS"]], dataset["MEDV"]
 
-def download_data() -> pd.DataFrame:
+
+if __name__ == '__main__':
     boston_dataset = load_boston()
     print(boston_dataset.keys)
     df1 = pd.DataFrame(boston_dataset['data'], columns=boston_dataset['feature_names'])
     df2 = pd.DataFrame(boston_dataset['target'], columns=['MEDV'])
-
-    return pd.concat([df1, df2], axis=1, sort=False)
-
-
-def price_regression(dataset: pd.DataFrame) -> (pd.DataFrame, pd.Series):
-    return dataset[["RM", "ZN", "CHAS"]], dataset["MEDV"]
-
-
-if __name__ == '__main__':
-
+    data_frame = pd.concat([df1, df2], axis=1, sort=False)
 
     # Task 1
-    data_frame = download_data()
+    #data_frame = download_data()
     print(f"First 10:\n{data_frame.head(10)}")
     print(f"Last 10:\n{data_frame.tail(10)}")
     print(' ')

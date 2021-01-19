@@ -1,0 +1,7 @@
+C:\Users\hubkn\source\repos\PPLaboratorium11\PPLaboratorium11\bin\Debug\PPLaboratorium11.exe.config
+C:\Users\hubkn\source\repos\PPLaboratorium11\PPLaboratorium11\bin\Debug\PPLaboratorium11.exe
+C:\Users\hubkn\source\repos\PPLaboratorium11\PPLaboratorium11\bin\Debug\PPLaboratorium11.pdb
+C:\Users\hubkn\source\repos\PPLaboratorium11\PPLaboratorium11\obj\Debug\PPLaboratorium11.csprojAssemblyReference.cache
+C:\Users\hubkn\source\repos\PPLaboratorium11\PPLaboratorium11\obj\Debug\PPLaboratorium11.csproj.CoreCompileInputs.cache
+C:\Users\hubkn\source\repos\PPLaboratorium11\PPLaboratorium11\obj\Debug\PPLaboratorium11.exe
+C:\Users\hubkn\source\repos\PPLaboratorium11\PPLaboratorium11\obj\Debug\PPLaboratorium11.pdb

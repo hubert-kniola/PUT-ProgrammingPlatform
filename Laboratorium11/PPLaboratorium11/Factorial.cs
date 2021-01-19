@@ -10,7 +10,6 @@ namespace PPLaboratorium11
 {
     class Factorial
     {
-
         public static BigInteger Calculate(BigInteger number)
         {
             if (number < 0)

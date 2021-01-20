@@ -38,8 +38,13 @@ namespace PPLaboratorium11
         public void showProducts()
         {
             foreach (var element in _products)
-                Console.WriteLine($"Product: {element.Key}, Stock: {element.Value}");
+                Console.WriteLine($"Product: {element.Key._name}, Stock: {element.Value}");
         }
 
+        public void showWarehouse()
+        {
+            foreach (var element in _products)
+                Console.WriteLine($"Product: {element.Key}");
+        }
     }
 }

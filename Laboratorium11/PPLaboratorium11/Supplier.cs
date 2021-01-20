@@ -27,6 +27,5 @@ namespace PPLaboratorium11
         {
             return string.Format("<Supplier = id: {0}, companyName: {1}, city: {2}, homePage: {3}>", _id, _companyName, _city, _homePage);
         }
-
     }
 }

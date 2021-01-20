@@ -25,6 +25,5 @@ namespace PPLaboratorium11
         {
             return string.Format("<Category = id: {0}, name: {1}, description: {2}>", _id, _name, _description);
         }
-
     }
 }

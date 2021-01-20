@@ -10,13 +10,14 @@ namespace PPLaboratorium11
 {
     class Factorial
     {
+        //TASK 3
         public static BigInteger Calculate(BigInteger number)
         {
             if (number < 0)
                 throw new ArgumentOutOfRangeException();
 
-            var accumulator = 1;
-            for (var factor = 1; factor <= number; factor++)
+            BigInteger accumulator = 1;
+            for (BigInteger factor = 1; factor <= number; factor++)
             {
                 accumulator *= factor;
             }
@@ -28,7 +29,7 @@ namespace PPLaboratorium11
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
 
-            Console.WriteLine($"Result of factorial [{number}]: ", Calculate(number));
+            Console.WriteLine($"Result of factorial [{number}]: {Calculate(number)}");
 
             stopWatch.Stop();
             TimeSpan ts = stopWatch.Elapsed;
@@ -36,6 +37,5 @@ namespace PPLaboratorium11
             string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
             Console.WriteLine("RunTime: " + elapsedTime);
         }
-
     }
 }

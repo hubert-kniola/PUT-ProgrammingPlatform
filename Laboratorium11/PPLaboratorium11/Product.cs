@@ -9,7 +9,7 @@ namespace PPLaboratorium11
     public class Product
     {
         private int _id { get; }
-        private string _name { get; set; }
+        public string _name { get; set; }
         private Category _category { get; set; }
         private Supplier _supplier { get; set; }
         private decimal _unitPrice { get; set; }

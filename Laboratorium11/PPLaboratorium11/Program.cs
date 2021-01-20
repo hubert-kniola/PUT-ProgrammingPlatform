@@ -22,15 +22,21 @@ namespace PPLaboratorium11
             whouse.addProduct(product2, 16);
             whouse.addProduct(product3, 24);
 
+            whouse.showWarehouse();
+            Console.WriteLine(" ");
+
             whouse.showProducts();
+            Console.WriteLine(" ");
 
             whouse.changeStock(product1, 12);
 
             whouse.showProducts();
+            Console.WriteLine(" ");
 
             whouse.deleteProduct(product2);
 
             whouse.showProducts();
+            Console.WriteLine(" ");
 
             Console.WriteLine("Stock: ", whouse.getFullStock());
             Console.WriteLine(" ");
@@ -41,6 +47,9 @@ namespace PPLaboratorium11
             Factorial.MeasureTime(2);
             Factorial.MeasureTime(5);
             Factorial.MeasureTime(10);
+            Factorial.MeasureTime(1000);
+            Factorial.MeasureTime(10000);
+            Factorial.MeasureTime(50000);
             Console.WriteLine(" ");
 
             //========= 4=========

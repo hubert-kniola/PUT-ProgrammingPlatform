@@ -8,6 +8,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.datasets import load_boston
 from sklearn.metrics import mean_squared_error, mean_absolute_error
 
+
 def price_regression(dataset: pd.DataFrame) -> (pd.DataFrame, pd.Series):
     return dataset[["RM", "ZN", "CHAS", "DIS"]], dataset["MEDV"]
 
@@ -55,7 +56,6 @@ if __name__ == '__main__':
     # B. Niepowiązany z ceną jest atrybut LSTAT
     # C. Tak istnieją, TAX - RAD
 
-
     sns.regplot(x=data_frame['MEDV'], y=data_frame['RM'])
     plt.savefig("./a_point_plot.png")
     plt.clf()
@@ -77,17 +77,17 @@ if __name__ == '__main__':
     # Task 7
     regressor = LinearRegression().fit(x_train, y_train)
 
-    y_predicted_test = regressor.predict(x_test)
     y_predicted_train = regressor.predict(x_train)
-
-    sns.regplot(x=y_test, y=y_predicted_test)
-    plt.axis('equal')
-    plt.savefig("./predicted_test.png")
-    plt.clf()
+    y_predicted_test = regressor.predict(x_test)
 
     sns.regplot(x=y_train, y=y_predicted_train)
     plt.axis('equal')
     plt.savefig("./predicted_train.png")
+    plt.clf()
+
+    sns.regplot(x=y_test, y=y_predicted_test)
+    plt.axis('equal')
+    plt.savefig("./predicted_test.png")
     plt.clf()
 
     # Task 8

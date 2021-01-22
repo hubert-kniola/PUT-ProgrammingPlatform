@@ -38,7 +38,7 @@ namespace PPLaboratorium11
             whouse.showProducts();
             Console.WriteLine(" ");
 
-            Console.WriteLine("Stock: ", whouse.getFullStock());
+            whouse.getFullStock();
             Console.WriteLine(" ");
 
             //========= TASK 3 =========

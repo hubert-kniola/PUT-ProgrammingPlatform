@@ -8,9 +8,9 @@ namespace PPLaboratorium11
 {
     public class Category
     {
-        private int _id { get; }
-        private string _name { get; set; }
-        private string _description { get; set; }
+        public int _id { get; }
+        public string _name { get; set; }
+        public string _description { get; set; }
 
         public Category(int id, string name, string description)
         {
@@ -18,8 +18,6 @@ namespace PPLaboratorium11
             _name = name;
             _description = description;
         }
-
-        public Category() { }
 
         public override string ToString()
         {

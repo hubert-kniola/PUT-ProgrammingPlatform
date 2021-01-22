@@ -8,11 +8,11 @@ namespace PPLaboratorium11
 {
     public class Product
     {
-        private int _id { get; }
+        public int _id { get; }
         public string _name { get; set; }
-        private Category _category { get; set; }
-        private Supplier _supplier { get; set; }
-        private decimal _unitPrice { get; set; }
+        public Category _category { get; set; }
+        public Supplier _supplier { get; set; }
+        public decimal _unitPrice { get; set; }
 
         public Product(int id, string name, Category category, Supplier supplier, decimal unitPrice)
         {
@@ -22,8 +22,6 @@ namespace PPLaboratorium11
             _supplier = supplier;
             _unitPrice = unitPrice;
         }
-
-        public Product() { }
 
         public override string ToString()
         {

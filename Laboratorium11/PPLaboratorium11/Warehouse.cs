@@ -10,29 +10,39 @@ namespace PPLaboratorium11
     {
         private Dictionary<Product, int> _products { get; set; }
 
-        public Warehouse() 
+        public Warehouse()
         {
             _products = new Dictionary<Product, int>();
         }
 
         public void addProduct(Product product, int stock)
         {
-            _products.Add(product, stock);
+            if (!_products.ContainsKey(product))
+                _products.Add(product, (stock >= 0) ? stock : 0);
+            else
+                Console.WriteLine("Product with that name already exist!");
         }
 
         public void deleteProduct(Product product)
         {
-            _products.Remove(product);
+            if (_products.ContainsKey(product))
+                _products.Remove(product);
+            else
+                Console.WriteLine("Product with that name does not exist!");
+
         }
 
         public void changeStock(Product product, int stock)
         {
-            _products[product] = stock;
+            if (_products.ContainsKey(product))
+                _products[product] = stock;
+            else
+                Console.WriteLine("Product with that name does not exist!");
         }
 
-        public int getFullStock()
+        public void getFullStock()
         {
-            return _products.Keys.Count;
+            Console.WriteLine($"Products: {_products.Count}, Products in stock: {_products.Sum(x=>x.Value)}");
         }
 
         public void showProducts()

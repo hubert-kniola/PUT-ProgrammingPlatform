@@ -9,7 +9,7 @@ from sklearn.datasets import load_boston
 from sklearn.metrics import mean_squared_error, mean_absolute_error
 
 
-def price_regression(dataset: pd.DataFrame) -> (pd.DataFrame, pd.Series):
+def data_regression(dataset: pd.DataFrame) -> (pd.DataFrame, pd.Series):
     return dataset[["RM", "ZN", "CHAS", "DIS"]], dataset["MEDV"]
 
 
@@ -21,7 +21,6 @@ if __name__ == '__main__':
     data_frame = pd.concat([df1, df2], axis=1, sort=False)
 
     # Task 1
-    #data_frame = download_data()
     print(f"First 10:\n{data_frame.head(10)}")
     print(f"Last 10:\n{data_frame.tail(10)}")
     print(' ')
@@ -71,7 +70,7 @@ if __name__ == '__main__':
     # D. Dodatnio skorelowane z cenami (a_point_plot)
 
     # Task 6
-    x, y = price_regression(data_frame)
+    x, y = data_regression(data_frame)
     x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
 
     # Task 7

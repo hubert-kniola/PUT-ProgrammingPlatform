@@ -8,10 +8,10 @@ namespace PPLaboratorium11
 {
     public class Supplier
     {
-        private int _id { get; }
-        private string _companyName { get; set; }
-        private string _city { get; set; }
-        private string _homePage { get; set; }
+        public int _id { get; }
+        public string _companyName { get; set; }
+        public string _city { get; set; }
+        public string _homePage { get; set; }
 
         public Supplier(int id, string companyName, string city, string homePage)
         {
@@ -20,8 +20,6 @@ namespace PPLaboratorium11
             _city = city;
             _homePage = homePage;
         }
-
-        //Supplier() { }
 
         public override string ToString()
         {

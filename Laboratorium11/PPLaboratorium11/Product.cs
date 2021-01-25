@@ -14,13 +14,9 @@ namespace PPLaboratorium11
         public Supplier _supplier { get; set; }
         public decimal _unitPrice { get; set; }
 
-        public Product(int id, string name, Category category, Supplier supplier, decimal unitPrice)
+        public Product(int id)
         {
             _id = id;
-            _name = name;
-            _category = category;
-            _supplier = supplier;
-            _unitPrice = unitPrice;
         }
 
         public override string ToString()

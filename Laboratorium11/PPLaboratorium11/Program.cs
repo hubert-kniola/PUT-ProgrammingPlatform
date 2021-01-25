@@ -12,9 +12,15 @@ namespace PPLaboratorium11
         {
             //========= TASK 1/2 =========
             Console.WriteLine("=== TASK 1/2 ===");
-            Product product1 = new Product(1, "Redbull", new Category(1, "Napoje", "Do picia"), new Supplier(1, "Redbull", "Berlin", "redbull.pl"), 10);
-            Product product2 = new Product(2, "Monster", new Category(2, "Napoje", "Do picia"), new Supplier(2, "Monster", "Warszawa", "monster.pl"), 5);
-            Product product3 = new Product(3, "Rockstar", new Category(3, "Napoje", "Do picia"), new Supplier(3, "Rockstar", "Londyn", "rockstar.pl"), 15);
+            Product product1 = new Product(1) { _name = "Redbull",
+                _category = new Category(1) { _name = "Napoje", _description = "Do picia" }, 
+                _supplier = new Supplier(1) { _companyName = "Redbull", _city = "Berlin", _homePage = "redbull.pl" }, _unitPrice = 10 };
+            Product product2 = new Product(2) { _name = "Monster", 
+                _category = new Category(2) { _name = "Napoje", _description = "Do picia" }, 
+                _supplier = new Supplier(2) { _companyName = "Monster", _city = "Warszawa", _homePage = "monster.pl" }, _unitPrice = 5 };
+            Product product3 = new Product(3) { _name = "Rockstar", 
+                _category = new Category(3) { _name = "Napoje", _description = "Do picia" }, 
+                _supplier = new Supplier(3) { _companyName = "Rockstar", _city = "Londyn", _homePage = "rockstar.pl" }, _unitPrice = 15 };
 
             Warehouse whouse = new Warehouse();
 

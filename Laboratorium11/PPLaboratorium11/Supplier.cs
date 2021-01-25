@@ -13,12 +13,9 @@ namespace PPLaboratorium11
         public string _city { get; set; }
         public string _homePage { get; set; }
 
-        public Supplier(int id, string companyName, string city, string homePage)
+        public Supplier(int id)
         {
             _id = id;
-            _companyName = companyName;
-            _city = city;
-            _homePage = homePage;
         }
 
         public override string ToString()

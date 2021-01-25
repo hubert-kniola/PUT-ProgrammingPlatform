@@ -12,11 +12,9 @@ namespace PPLaboratorium11
         public string _name { get; set; }
         public string _description { get; set; }
 
-        public Category(int id, string name, string description)
+        public Category(int id)
         {
             _id = id;
-            _name = name;
-            _description = description;
         }
 
         public override string ToString()
